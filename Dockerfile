@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/bill-dashboard-1.0-SNAPSHOT.jar app.jar
 
 # Expose port EXPOSE 8081 (or your app port)
-EXPOSE EXPOSE 8081
+EXPOSE 8081
 
 # Run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
