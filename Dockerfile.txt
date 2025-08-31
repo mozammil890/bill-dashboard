@@ -1,0 +1,14 @@
+# Use OpenJDK 17 slim image
+FROM openjdk:17-jdk-slim
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy the built jar from target folder to container
+COPY target/bill-dashboard-1.0-SNAPSHOT.jar app.jar
+
+# Expose port 8081 (or your app port)
+EXPOSE 8081
+
+# Run the app
+ENTRYPOINT ["java", "-jar", "app.jar"]
