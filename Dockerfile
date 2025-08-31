@@ -1,14 +1,13 @@
-# Use OpenJDK 17 slim image
-FROM openjdk:17-jdk-slim
-
-# Set working directory inside container
+# Use Maven to build the project first
+FROM maven:3.9.6-eclipse-temurin-17 as build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copy the built jar from target folder to container
-COPY target/bill-dashboard-1.0-SNAPSHOT.jar app.jar
-
-# Expose port EXPOSE 8081 (or your app port)
+# Use JDK runtime image to run the app
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/bill-dashboard-1.0-SNAPSHOT.jar app.jar
 EXPOSE 8081
-
-# Run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
