@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import service.DashBoardService;
 import utilities.SubmitSalesDataRequest;
 
+import java.util.Date;
+
 @RestController
 public class DashBoardApiController implements  DashBoardApi{
 
@@ -23,6 +25,7 @@ public class DashBoardApiController implements  DashBoardApi{
 
     @Override
     public ResponseEntity<Void> submitTotalSales(SubmitSalesDataRequest submitSalesDataRequest) {
+        submitSalesDataRequest.setDate(new Date());
         dashBoardService.submitTotalSalesService(submitSalesDataRequest);
         return ResponseEntity.ok().build();
     }
