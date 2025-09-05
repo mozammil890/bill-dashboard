@@ -15,7 +15,7 @@ public class WebAppConfig {
        return new WebMvcConfigurer() {
            @Override
            public void addCorsMappings(CorsRegistry corsRegistry){
-               corsRegistry.addMapping("/**").allowedOrigins("http://localhost:3000","https://mozammil890.github.io/bill-dashboard-ui/?utm_source=chatgpt.com").
+               corsRegistry.addMapping("/**").allowedOrigins("http://localhost:3000","https://mozammil890.github.io").
                        allowedMethods("PUT","POST","DELETE","GET","OTHERS").allowedHeaders("*");
            }
        };
